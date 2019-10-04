@@ -1,0 +1,41 @@
+body{
+    background-image: url(http://sfwallpaper.com/images/unc-desktop-wallpaper-20.jpg);
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+#questionBody{
+    background-color: #A4BEE3;
+    width: 100%;
+    margin: 0 auto;
+    height: 720px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.row{
+    margin-left: 400px;
+    margin-top: 20px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    /* margin: auto 0; */
+    font-family: 'Bungee Inline', cursive;
+}
+#title{
+    font-size: 60px;   
+    font-family: block;
+    font-family: 'Diplomata SC', cursive;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+#start{
+    margin-top: 150px;
+    width: 250px;
+    color: #A4BEE3;
+    background-color: white;
+    font-size: 100px;
+    text-align: center;
+}
