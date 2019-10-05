@@ -32,10 +32,18 @@ body{
     margin-top: 30px;
 }
 #start{
-    margin-top: 150px;
-    width: 250px;
+    margin-top: 50px;
+    width: 350px;
     color: #A4BEE3;
     background-color: white;
     font-size: 100px;
     text-align: center;
+}
+answerChoices{
+    width: 150px;
+    color: #A4BEE3;
+    background-color: white;
+    font-size: 100px;
+    text-align: center;
+    
 }
