@@ -9,6 +9,7 @@
     var correctSelection=0;
     var incorrectSelection=0;
     var questionIndex=0;
+    var time= 15000;
     
     // Create an array of object questions for the user to answer one at a time.
     var friendsQuestions = [
@@ -71,16 +72,17 @@
 
         
         for(var i=0; i<friendsQuestions[questionIndex].answer.length; i++){
-            $(".answerChoices").text(answer[i].length);
+            $(".answerChoices").prepend("<button><p>" +friendsQuestions[questionIndex].answer[i]+ "</button></p>");
+            // $(".answerChoices").html("<br>");
             console.log("answerdisplayed");
         }
         ;}
     
                    
      function userWin(){
-         $("#gameOn").append("OH. MY. GOD.")
+         $("#gameOn").append("OH. MY. GAWWDDD! You got it correct!!");
          correctSelection ++;
-         var correctSelection = friendsQuestions[questionIndex].correctAnswer;
+         correctSelection = friendsQuestions[questionIndex].correctAnswer;
          $("#gameOn").append("The correct answer was " + correctAnswer + friendsQuestions[questionIndex].image);
          setTimeout(nextQuestion, 5000);
          questionIndex ++; 
@@ -101,6 +103,9 @@
              setTimeout(nextQuestion, 5000);
              questionIndex++;
          }
+     }
+     function nextQuestion(){
+
      }
            
        
