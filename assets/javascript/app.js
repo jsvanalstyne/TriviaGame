@@ -4,137 +4,117 @@
 // Game begins with start button displayed--DONE--
 // Once timer is clicked, the user has 30 seconds to select trivia answer
     // Create an on-click funciton using jquery that slideshows to the first question and starts timeer (30 seconds)
-    // <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     $(document).ready(function() { 
-    var showGif;
-    var correctAnswer = [];
     var correctSelection=0;
     var incorrectSelection=0;
     var questionIndex=0;
-    var answer; 
+    
     // Create an array of object questions for the user to answer one at a time.
-    var tarheelQuestions = [
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a1",
-            b: "answer b1",
-            c: "answer c1",
-            d: "answer d1"
+    var friendsQuestions = [
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        correctAnswer: "answer c"
+        {question: "What is Rachel's middle name?",
+        answer: ["Regina", "Karen", "Ellen", "Bethany"],
+        correctAnswer: "Karen",
+        image:"<img src='assets/images/friends2.gif'>"
         },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a2",
-            b: "answer b2",
-            c: "answer c2",
-            d: "answer d2"
+        {question: "Who was Chandler roommates with before Joey?",
+        answer: ["Gunther", "Tom", "Ross", "Kip"],
+        correctAnswer: "Kip",
+        image:"<img src='assets/images/friends3.gif'>"
         },
-        correctAnswer: "answer a "
+        {question: "wWhat is Phoebe's fake name?",
+        answer: ["Regina Phlange", "Betty Davis", "Karen Tarsal", "Sandra Dee"],
+        correctAnswer: "Regina Phlange",
+        image:"<img src='assets/images/friends4.gif'>"
         },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
+        {question: "Who told Rachel that Ross had slept with the copy girl?",
+        answer: ["Joey", "Gunther", "Chandler", "Monica"],
+        correctAnswer: "Gunther",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        correctAnswer: "answer d"
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answe ra",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        correctAnswer: "answer c"
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
         },
-        correctAnswer: "answer b"
-        },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
-        },
-        correctAnswer: "answer a"
-        },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
-        },
-        correctAnswer: "answer a"
-        },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d:"answer d"
-        },
-        correctAnswer: "answer b"
-        },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
-
-        },
-        correctAnswer: "answer c"
-        },
-        {questions: "tarheel question 1",
-        answer: {
-            a: "answer a",
-            b: "answer b",
-            c: "answer c",
-            d: "answer d"
-        },
-        correctAnswer: "answer d"
-        }
+        {question: "Who does Monica marry?",
+        answer: ["Joey", "Richard", "Chandler", "Ross"],
+        correctAnswer: "Chandler",
+        image:"<img src='assets/images/friends1.gif'>"
+        } 
+       
     ];
-    // $(".answerChoices").hide();
+    
     function asking(){
-        var answers;
-         if(questionIndex<tarheelQuestions.length){
-             console.log("asking");
-            for(var i=0; i<tarheelQuestions[0].questions.length; i++){
-         console.log("clickStart");
-         
+        $("#gameOn").append("<p><strong>"+ friendsQuestions[questionIndex].question+ 
+        "</p>")
+
+        
+        for(var i=0; i<friendsQuestions[questionIndex].answer.length; i++){
+            $(".answerChoices").text(answer[i].length);
+            console.log("answerdisplayed");
+        }
+        ;}
+    
+                   
+     function userWin(){
+         $("#gameOn").append("OH. MY. GOD.")
+         correctSelection ++;
+         var correctSelection = friendsQuestions[questionIndex].correctAnswer;
+         $("#gameOn").append("The correct answer was " + correctAnswer + friendsQuestions[questionIndex].image);
+         setTimeout(nextQuestion, 5000);
+         questionIndex ++; 
+     }   
+
+     function userLoss(){
+         $("#gameOn").append("Could you be anymore wrong?")
+         incorrectSelection ++;
+         $("#gameOn").append("The correct answer was " + correctAnswer + friendsQuestions[questionIndex].image);
+         setTimeout(nextQuestion, 5000);
+         questionIndex ++;
+     }
+     function outOfTime(){
+         if(time===0){
+             $("#gameOn").append("You weren't there for me!")
+             incorrectSelection ++;
+             $("#gameOn").append("The correct answer was " + correctAnswer + friendsQuestions[questionIndex].image);
+             setTimeout(nextQuestion, 5000);
+             questionIndex++;
          }
-         $("#question").text (tarheelQuestions[questionIndex].questions);
-         for(var i)
-         $(".answerChoices").text(tarheelQuestions[questionIndex].answer)
-         
-         $(".answerChoices").click(tarheelQuestions[questionIndex].answer);
-        //  answers = answer.values(tarheelQuestions);
-        //     console.log("answer displayed");
-        
-         console.log("questions");
+     }
            
-            }
+       
         
-    }
     
      $("#start").click(function(){
-         var output=[];
+        //  var output=[];
          console.log("click");
          $("#start").hide();
          asking();
-        //  $(".answerChoices").unhide();
+         
+        
+        
+
 
        
      });
