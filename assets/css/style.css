@@ -3,29 +3,32 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: 'Covered By Your Grace', cursive;
-
+    font-family: friends;   
 }
+@font-face {
+    font-family: friends;
+    src: url(../css/friends.ttf)
+ }
+ #title{
+     font-size: 50px;
+ }
 #questionBody{
     background-color: purple;
     width: 70%;
     margin: 0 auto;
-    height: 420px;
+    height: 600px;
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
-    opacity: 0.9;
-
+    opacity: 0.8;
 }
 .row{
-    margin-left: 400px;
+    margin-left: 300px;
     margin-top: 20px;
     padding: 20px;
     color: white;
     text-align: center;
-    font-size: 30px;
-    /* margin: auto 0; */
-   
+    font-size: 30px;   
 }
 #gameName{
     font-size: 60px;   
@@ -40,25 +43,15 @@ body{
     background-color: white;
     font-size: 100px;
     text-align: center;
+    margin-left: 50px;
 }
-answerChoice{
-    width: 150px;
-    color: #A4BEE3;
-    background-color: white;
-    font-size: 100px;
+
+.answerChoices{
+    /* margin-top: 50px; */
+    width: 350px;
+    color: purple;
+    /* background-color: white; */
+    font-size: 30px;
     text-align: center;
-    
-}
-answerChoices{
-    padding: 100px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left:30px;
-    margin-right: 30px;
-    font-size: 40px;
-
-}
-
-html {
-	cursor: url(), auto;
+    margin-left: 350px;
 }

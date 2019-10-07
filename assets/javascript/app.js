@@ -10,6 +10,7 @@
     var incorrectSelection=0;
     var questionIndex=0;
     var time= 15000;
+    var userClick="";
     
     // Create an array of object questions for the user to answer one at a time.
     var friendsQuestions = [
@@ -82,7 +83,7 @@
      function userWin(){
          $("#gameOn").append("OH. MY. GAWWDDD! You got it correct!!");
          correctSelection ++;
-         correctSelection = friendsQuestions[questionIndex].correctAnswer;
+         userClick = friendsQuestions[questionIndex].correctAnswer;
          $("#gameOn").append("The correct answer was " + correctAnswer + friendsQuestions[questionIndex].image);
          setTimeout(nextQuestion, 5000);
          questionIndex ++; 
@@ -105,8 +106,23 @@
          }
      }
      function nextQuestion(){
+        $("#gameOn").append("<p><strong>"+ friendsQuestions[questionIndex].question+ 
+        "</p>")
+        for(var i=0; i<friendsQuestions[questionIndex].answer.length; i++){
+            $(".answerChoices").prepend("<button><p>" +friendsQuestions[questionIndex].answer[i]+ "</button></p>");
+            // $(".answerChoices").html("<br>");
+            console.log("answerdisplayed");
+        }
 
      }
+     function timer(){
+        intervalId = setInterval(decrement, 15000);
+     }
+     function restartGame(){
+        $("#gameOn").html("<p>Correct answers: "+ correctSelection +"</p><p>Incorrect answers: "+ incorrectSelection +"</p>")
+        $("#start").show();
+     }
+     restartGame;
            
        
         
@@ -115,14 +131,23 @@
         //  var output=[];
          console.log("click");
          $("#start").hide();
-         asking();
-         
-        
-        
-
-
-       
+         asking(); 
+         setTimeout(nextQuestion, 5000);   
+               
+     
      });
+     $(".button").on("click", function(){
+         userClick = event.click;
+         if(userClick = friendsQuestions[questionIndex].correctAnswer){
+             userWin();
+         }
+         else if ( time===0){
+             outOfTime();
+         }
+         else{
+             userLoss();
+         }       
+     })
      
 // Once a selection is made, the user answer is compared with the correct answer. 
 // If correct answer is made, add a point to the correct variable
