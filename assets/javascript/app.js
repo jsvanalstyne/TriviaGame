@@ -31,61 +31,63 @@
         correctAnswer: "Karen",
         image:"<img src='assets/images/friends2.gif'>"
         },
-        // {question: "Chanlder's previous roomate was...",
-        // answer: ["Gunther", "Tom", "Ross", "Kip"],
-        // correctAnswer: "Kip",
-        // image:"<img src='assets/images/friends3.gif'>"
-        // },
-        // {question: "wWhat is Phoebe's fake name?",
-        // answer: ["Regina Phalange", "Betty Davis", "Karen Tarsal", "Sandra Dee"],
-        // correctAnswer: "Regina Phalange",
-        // image:"<img src='assets/images/friends4.gif'>"
-        // },
-        // {question: "Who told Rachel that Ross had cheated?",
-        // answer: ["Joey", "Gunther", "Chandler", "Monica"],
-        // correctAnswer: "Gunther",
-        // image:"<img src='assets/images/friends5.gif'>"
-        // },
-        // {question: "Joey worked at which casino?",
-        // answer: ["Caesars Palace", "Taj Mahal", "Bellagio", "Mandalay Bay"],
-        // correctAnswer: "Caesars Palace",
-        // image:"<img src='assets/images/friends6.gif'>"
-        // },
-        // {question: "What was Rachel's first job after Central Perk?",
-        // answer: ["Ralph Lauren", "Bloomingdale's", "Fortunata Fashions", "Macy's"],
-        // correctAnswer: "Fortunata Fashions",
-        // image:"<img src='assets/images/friends7.gif'>"
-        // },
-        // {question: "What was the name of Pheobe's roommate?",
-        // answer: ["Denise", "Sharon", "Katie", "Alice"],
-        // correctAnswer: "Denise",
-        // image:"<img src='assets/images/friends8.gif'>"
-        // },
-        // {question: "Where did Ross take Rachel on their first date?",
-        // answer: ["Central Park", "Dinner", "The Museum", "The movies"],
-        // correctAnswer: "The movies",
-        // image:"<img src='assets/images/friends9.gif'>"
-        // },
-        // {question: "What Monica's apartment number?",
-        // answer: ["20", "21", "22", "23"],
-        // correctAnswer: "20",
-        // image:"<img src='assets/images/friends10.gif'>"
-        // } 
+        {question: "Chanlder's previous roomate was...",
+        answer: ["Gunther", "Tom", "Ross", "Kip"],
+        correctAnswer: "Kip",
+        image:"<img src='assets/images/friends3.gif'>"
+        },
+        {question: "wWhat is Phoebe's fake name?",
+        answer: ["Regina Phalange", "Betty Davis", "Karen Tarsal", "Sandra Dee"],
+        correctAnswer: "Regina Phalange",
+        image:"<img src='assets/images/friends4.gif'>"
+        },
+        {question: "Who told Rachel that Ross had cheated?",
+        answer: ["Joey", "Gunther", "Chandler", "Monica"],
+        correctAnswer: "Gunther",
+        image:"<img src='assets/images/friends5.gif'>"
+        },
+        {question: "Joey worked at which casino?",
+        answer: ["Caesars Palace", "Taj Mahal", "Bellagio", "Mandalay Bay"],
+        correctAnswer: "Caesars Palace",
+        image:"<img src='assets/images/friends6.gif'>"
+        },
+        {question: "What was Rachel's first job after Central Perk?",
+        answer: ["Ralph Lauren", "Bloomingdale's", "Fortunata Fashions", "Macy's"],
+        correctAnswer: "Fortunata Fashions",
+        image:"<img src='assets/images/friends7.gif'>"
+        },
+        {question: "What was the name of Pheobe's roommate?",
+        answer: ["Denise", "Sharon", "Katie", "Alice"],
+        correctAnswer: "Denise",
+        image:"<img src='assets/images/friends8.gif'>"
+        },
+        {question: "Where did Ross take Rachel on their first date?",
+        answer: ["Central Park", "Dinner", "The Museum", "The movies"],
+        correctAnswer: "The movies",
+        image:"<img src='assets/images/friends9.gif'>"
+        },
+        {question: "What Monica's apartment number?",
+        answer: ["20", "21", "22", "23"],
+        correctAnswer: "20",
+        image:"<img src='assets/images/friends10.gif'>"
+        } 
        
     ];
 
     //Funciton to create and display question and the appropriate answers
     function asking(){
-        if(questionIndex>friendsQuestions.length-1){
+        if(questionIndex>=friendsQuestions.length){
             endOfGame();
-            }   
+            }
+        else{
+            console.log(questionIndex)
         $("#questions").html("<p>"+ friendsQuestions[questionIndex].question+ 
         "</p>");
 
         // Loop generating answers with according to the question index
 
         for(var i=0; i<friendsQuestions[questionIndex].answer.length; i++){
-            $(".answerChoices").append("<button><p class='choice'>" +friendsQuestions[questionIndex].answer[i]+ "</button></p>");
+            $(".answerChoices").append("<button class='choice'>" +friendsQuestions[questionIndex].answer[i]+ "</button>");
             console.log("answerdisplayed");
         }
         $("#timer").html("<p> Time remaining: " + 15 + "</p>");
@@ -93,6 +95,8 @@
         
        
     }
+    }
+
     //Function to clear divs stated globally
     function clearDivs (){
         $("#questions").html("");
@@ -129,8 +133,11 @@
     //  Function to transition to next question after displaying the correct answer and image. 
      function nextQuestion(){
         // clear out divs (image and win/loss/outoftime)
-        clearDivs();
+        console.log(questionIndex +"entering");
+        
         questionIndex ++;
+        clearDivs();
+        console.log(questionIndex + "after");
         asking();
      }
 
@@ -143,7 +150,6 @@
      }
      function countdown(){
          number--;
-
         $("#timer").html("<p> Time remaining: " + number + "</p>");
         if (number === 0) {
             stopTimer();
@@ -153,34 +159,45 @@
          timerRunning=false;
         clearInterval(timerInterval);
         number= 15;
-        outOfTime();
+        // outOfTime();
      }
      
      function restartGame(){
+        $("#questions").show();
         correctSelection=0;
         incorrectSelection=0;
         questionIndex=0;
         number= 15;
+        asking();
+     }
+     function gameStats(){
+         $("#correct").text("Correct Answers: "+ correctSelection);
+         $("#incorrect").text("Incorrect Answers: "+ incorrectSelection);
      }
 
      function endOfGame(){
-         $("#questions").html("<p> GAME OVER</p>"+ "<p>"+ "<p> Incorrectly answered: "+incorrectSelection +"</p>"+ "<p> Correctly answered: "+ correctSelection+ "</p>" + "<p> To play again, press START!</p>")
+         $("#questions").hide();
+         $("#stats").show();
+         console.log(correctSelection);
+         console.log(incorrectSelection);
+        gameStats();
+        // $("#stats").show("<p> GAME OVER</p>"+  "<p> Incorrectly answered: "+incorrectSelection +"</p>"+ "<p> Correctly answered: "+ correctSelection+ "</p>" + "<p> To play again, press START!</p>");
          $("#start").show();
-         restartGame();
+         $("#start").click(function(){
+            $("#start").hide();
+            $("#stats").hide();
+            restartGame(); 
+        })
+        
 
      }  
 
-    // Trying to get the theme song to play when game loads. Just for fun. 
-     function themeSong(){
-        var friendsTheme = "assets/images/friends.mp3"
-        var songPlay = $("#songPlay")
-        songPlay.attr("src", friendsTheme);
-        songPlay.play();
-     }
+    
 // ------------------------Main Game---------------------------------------
     // A function to start the game. User clicks the button and the start button is hidden allowing questions to be displayed. 
    
     //  themeSong();
+    $("#stats").hide();
      $("#start").click(function(){
          console.log("click");
          $("#start").hide();
@@ -192,15 +209,17 @@
      $(document).on("click", ".choice", function(){ 
         var userClick= $(this).text();
         console.log(userClick);
-        stopTimer();
+        
         if(userClick === friendsQuestions[questionIndex].correctAnswer){
             console.log(friendsQuestions[questionIndex].correctAnswer);
+            stopTimer();
             userWin();
         }
         else if (number===0){
             outOfTime();
         }
         else{
+            stopTimer();
             userLoss();
         };  
        
