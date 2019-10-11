@@ -153,6 +153,7 @@
         $("#timer").html("<p> Time remaining: " + number + "</p>");
         if (number === 0) {
             stopTimer();
+            outOfTime();
           }
      }
      function stopTimer(){
@@ -214,11 +215,7 @@
             console.log(friendsQuestions[questionIndex].correctAnswer);
             stopTimer();
             userWin();
-        }
-        else if (number===0){
-            outOfTime();
-        }
-        else{
+        }else{
             stopTimer();
             userLoss();
         };  
