@@ -7,7 +7,7 @@ body{
 }
 @font-face {
     font-family: friends;
-    src: url(../css/friends.TTF)
+    src: url(./friends.TTF)
  }
  #title{
      font-size: 50px;
